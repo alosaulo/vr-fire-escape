@@ -1,0 +1,26 @@
+{
+  "actions": [
+    {
+      "name": "/actions/Default/in/Follow",
+      "type": "pose",
+      "requirement": "mandatory"
+    }
+  ],
+  "action_sets": [
+    {
+      "name": "/actions/NewSet",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/Default",
+      "usage": "single"
+    }
+  ],
+  "default_bindings": [],
+  "localization": [
+    {
+      "language_tag": "new-language",
+      "/actions/Default/in/Follow": "/actions/Default/in/Follow"
+    }
+  ]
+}
