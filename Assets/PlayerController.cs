@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public SteamVR_Action_Vector2 touchPadAction;
 
+
     public Camera mCamera;
 
     Rigidbody mRigidBody;
@@ -14,6 +15,10 @@ public class PlayerController : MonoBehaviour
     Vector2 touchpadValue;
 
     public float MoveSpeed = 5;
+
+    public Collider coll;
+    public PhysicMaterial playerNormalMaterial;
+    public PhysicMaterial playerRampMaterial;
 
     private void Start()
     {
@@ -29,8 +34,26 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 newPosition = new Vector3(touchpadValue.x, 0, touchpadValue.y);
         newPosition = mCamera.transform.TransformDirection(newPosition);
+        //newPosition.y = mRigidBody.position.y;
         if (newPosition.sqrMagnitude > 0) {
             mRigidBody.MovePosition((transform.position + newPosition * MoveSpeed * Time.fixedDeltaTime)) ;
+            //characterController.Move(transform.position + newPosition * MoveSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ramp")
+        {
+            coll.material = playerRampMaterial;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ramp")
+        {
+            coll.material = playerNormalMaterial;
         }
     }
 
