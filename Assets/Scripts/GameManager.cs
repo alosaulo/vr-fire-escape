@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    public GameObject panelWin;
+    public GameObject panelLose;
+
     public static GameManager _instance;
     private void Awake()
     {
@@ -25,12 +29,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Win() { 
-        
+    public void Win() {
+        panelWin.SetActive(true);
     }
 
-    public void GameOver() { 
-        
+    public void GameOver() {
+        panelLose.SetActive(false);
+    }
+
+    public void RestartScene(int sceneNum) {
+        SceneManager.LoadScene(sceneNum);
     }
 
 }
